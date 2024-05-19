@@ -61,7 +61,6 @@ function elegirMarca() {
     }
 }
 
-
 function obtenerCantidad() {
     let cantidad;
     while (true) {
@@ -76,7 +75,7 @@ function obtenerCantidad() {
 }
 
 function sumarProducto() {
-    let nuevoProducto = prompt("¿Quiere elegir otro producto? Escriba 'Si' o 'No'");
+    let nuevoProducto = prompt("¿Quiere elegir otro producto? Escriba 'Si' ,para finalizar escriba 'No'");
     if (nuevoProducto.toLowerCase() === "si") {
         elegirMarca();
     } else if (nuevoProducto.toLowerCase() === "no") {
@@ -97,7 +96,7 @@ function procesarProducto(productoElegido) {
 }
 
 function formaDePagoUsuario(producto, cantidad) {
-    var formaDePago = prompt("Elija la forma de pago: Escriba 'Cuotas' si desea a bonar en 2 o 3 cuotas o 'Efectivo' si desea abonar en un pago");
+    var formaDePago = prompt("Elija la forma de pago: Escriba 'Cuotas' si desea a bonar en 2 o 3 pagos o 'Efectivo' si desea abonar en un pago");
     if(formaDePago.toLowerCase() === "cuotas") {
         calcularPrecio(producto, cantidad, true);
     } else if(formaDePago.toLowerCase() === "efectivo") {
@@ -108,49 +107,38 @@ function formaDePagoUsuario(producto, cantidad) {
     }
 }
 
-
-// function calcularPrecio(producto, cantidad, enCuotas) {
-//     var precioUnitario = valorPrecioUnitario(producto);
-//     var precioTotal = precioUnitario * cantidad * 1.21;
-//     if (enCuotas) {
-//         var precioCuota = (precioTotal / 3).toFixed(2);
-//         alert("El precio total por " + cantidad + " " + producto + " mas IVA es de: $ " + precioTotal + " dólares.");
-//         alert("Pagando en tres cuotas de $ " + precioCuota + " dólares por cuota.");
-//     } else {
-//         alert("El precio total por " + cantidad + " " + producto + " mas IVA es de: $ " + precioTotal + " dólares.");
-//     }
-// }
-
 function calcularPrecio(producto, cantidad, enCuotas) {
     var precioUnitario = valorPrecioUnitario(producto);
     var precioTotal = precioUnitario * cantidad * 1.21;
-    var formaDeCuota = parseInt(prompt("Si eligio cuotas ingrese el numero de pagos! de lo contrario presione Enter"));
-    if (enCuotas == true && formaDeCuota === 3) {
-        var precioCuota = (precioTotal / 3).toFixed(2);
-        alert("El precio total por " + cantidad + " " + producto + " mas IVA es de: $ " + precioTotal + " dólares.");
-        alert("Pagando en tres cuotas de $ " + precioCuota + " dólares por cuota.");
-    } else if (enCuotas == true && formaDeCuota === 2) {
-        var precioCuotaDos = (precioTotal / 2).toFixed(2);
-        alert("El precio total por " + cantidad + " " + producto + " mas IVA es de: $ " + precioTotal + " dólares.");
-        alert("Pagando en dos cuotas de $ " + precioCuotaDos + " dólares por cuota.");
+
+    if (enCuotas) {
+        var formaDeCuota = parseInt(prompt("Ingrese el número '2' o '3' para la cantidad de cuotas."));
+        if (formaDeCuota === 3) {
+            var precioCuota = (precioTotal / 3).toFixed(2);
+            alert("El precio total por " + cantidad + " " + producto + " más IVA es de: $ " + precioTotal + " dólares.");
+            alert("Pagando en tres cuotas de $ " + precioCuota + " dólares por cuota.");
+        } else if (formaDeCuota === 2) {
+            var precioCuotaDos = (precioTotal / 2).toFixed(2);
+            alert("El precio total por " + cantidad + " " + producto + " más IVA es de: $ " + precioTotal + " dólares.");
+            alert("Pagando en dos cuotas de $ " + precioCuotaDos + " dólares por cuota.");
+        } else {
+            alert("Opción de cuota no válida, se calculará el precio total.");
+            alert("El precio total por " + cantidad + " " + producto + " más IVA es de: $ " + precioTotal + " dólares.");
+        }
     } else {
-        alert("El precio total por " + cantidad + " " + producto + " mas IVA es de: $ " + precioTotal + " dólares.");
-    };
+        alert("El precio total por " + cantidad + " " + producto + " más IVA es de: $ " + precioTotal + " dólares.");
+    }
 }
 
 function valorPrecioUnitario(producto) {
     switch(producto.toLowerCase()) {
         case "adizero":
-            alert("El precio de Adidas Adizero es de $ 200 dolares");
             return 200;
         case "ultraboost":
-            alert("El precio de Adidas Ultraboost es de $ 180 dolares");
             return 180;
         case "response":
-            alert("El precio de Adidas Response es de $ 90 dolares");
             return 90;
         case "superstar":
-            alert("El precio de Adidas Superstar es de $ 85 dolares");
             return 85;
         case "air max 90":
             return 950;
