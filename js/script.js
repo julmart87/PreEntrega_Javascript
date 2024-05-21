@@ -2,7 +2,7 @@
 
 let nombreDeUsuario = prompt("Hola!! Ingrese su nombre: ");
 let apellidoDeUsuario = prompt("Hola!! Ingrese su Apellido: ");
-var edadDeUsuario = parseInt(prompt("Ingrese su edad: "));
+let edadDeUsuario = parseInt(prompt("Ingrese su edad: "));
 
 if (isNaN(edadDeUsuario)) {
     alert("Por favor ingrese un número válido para la edad de usuario.");
@@ -11,7 +11,7 @@ if (isNaN(edadDeUsuario)) {
 } else {
     alert("¡Bienvenido a la Tienda Online! " + nombreDeUsuario + " " + apellidoDeUsuario);
     
-    var consulta = prompt("¿Quiere ver los productos? Por favor escriba 'Si' si desea continuar o 'No' si desea salir.");
+    let consulta = prompt("¿Quiere ver los productos? Por favor escriba 'Si' si desea continuar o 'No' si desea salir.");
     if(consulta.toLowerCase() === "si") {
         alert("A continuación te mostraremos las marcas.");
         elegirMarca();
@@ -26,7 +26,7 @@ function elegirProducto(marca, productos) {
     let productoElegido = prompt("Elige el producto que te interese (" + productos.join(", ") + ")");
     if (productos.includes(productoElegido.toLowerCase())) {
         alert("Usted ha elegido el modelo " + marca + " " + productoElegido);
-        var cantidad = obtenerCantidad();
+        let cantidad = obtenerCantidad();
         if (!isNaN(cantidad) && cantidad > 0) {
             formaDePagoUsuario(productoElegido, cantidad);
             sumarProducto();
@@ -41,7 +41,7 @@ function elegirProducto(marca, productos) {
 }
 
 function elegirMarca() {
-    var marcaElegida = prompt("Eliga una marca...Escriba la marca de zapatillas que te interese( Adidas, Nike, Puma, Saucony)");
+    let marcaElegida = prompt("Eliga una marca...Escriba la marca de zapatillas que te interese( Adidas, Nike, Puma, Saucony)");
     switch (marcaElegida.toLowerCase()) {
         case "adidas":
             elegirProducto("Adidas", ["adizero", "ultraboost", "response", "superstar"]);
@@ -64,7 +64,7 @@ function elegirMarca() {
 function obtenerCantidad() {
     let cantidad;
     while (true) {
-        cantidad = parseInt(prompt("Indique con un numero la cantidad de que quiera"));
+        cantidad = parseInt(prompt("Indique con un numero la cantidad que quiera"));
         if (!isNaN(cantidad) && cantidad > 0) {
             break;
         } else {
@@ -96,7 +96,7 @@ function procesarProducto(productoElegido) {
 }
 
 function formaDePagoUsuario(producto, cantidad) {
-    var formaDePago = prompt("Elija la forma de pago: Escriba 'Cuotas' si desea a bonar en 2 o 3 pagos o 'Efectivo' si desea abonar en un pago");
+    let formaDePago = prompt("Elija la forma de pago: Escriba 'Cuotas' si desea a bonar en 2 o 3 pagos o 'Efectivo' si desea abonar en un pago");
     if(formaDePago.toLowerCase() === "cuotas") {
         calcularPrecio(producto, cantidad, true);
     } else if(formaDePago.toLowerCase() === "efectivo") {
@@ -108,17 +108,17 @@ function formaDePagoUsuario(producto, cantidad) {
 }
 
 function calcularPrecio(producto, cantidad, enCuotas) {
-    var precioUnitario = valorPrecioUnitario(producto);
-    var precioTotal = precioUnitario * cantidad * 1.21;
+    let precioUnitario = valorPrecioUnitario(producto);
+    let precioTotal = precioUnitario * cantidad * 1.21;
 
     if (enCuotas) {
-        var formaDeCuota = parseInt(prompt("Ingrese el número '2' o '3' para la cantidad de cuotas."));
+        let formaDeCuota = parseInt(prompt("Ingrese el número '2' o '3' para la cantidad de cuotas."));
         if (formaDeCuota === 3) {
-            var precioCuota = (precioTotal / 3).toFixed(2);
+            let precioCuota = (precioTotal / 3).toFixed(2);
             alert("El precio total por " + cantidad + " " + producto + " más IVA es de: $ " + precioTotal + " dólares.");
             alert("Pagando en tres cuotas de $ " + precioCuota + " dólares por cuota.");
         } else if (formaDeCuota === 2) {
-            var precioCuotaDos = (precioTotal / 2).toFixed(2);
+            let precioCuotaDos = (precioTotal / 2).toFixed(2);
             alert("El precio total por " + cantidad + " " + producto + " más IVA es de: $ " + precioTotal + " dólares.");
             alert("Pagando en dos cuotas de $ " + precioCuotaDos + " dólares por cuota.");
         } else {
